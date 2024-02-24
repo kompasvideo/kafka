@@ -1,0 +1,11 @@
+server:
+  port: 9000
+application:
+  kafka:
+    topic: "demo-topic"
+
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: "127.0.0.1:9092"
+      client-id: "demo-producer"
