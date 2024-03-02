@@ -1,0 +1,43 @@
+server:
+  port: 8000
+application:
+  kafka:
+    topic: "demo-topic"
+
+
+spring:
+  kafka:
+    consumer:
+      group-id: "test-group"
+      bootstrap-servers: "localhost:9092"
+      client-id: "demo-consumer"
+      auto-offset-reset: earliest
+
+#spring:
+#  kafka:
+#    bootstrap-servers: "kafka.auth.svc.cluster.local:9092"
+#    consumer:
+#      group-id: "notificafion"
+#      #      bootstrap-servers: "kafka.auth.svc.cluster.local:9092"
+#      bootstrap-servers: "localhost:9092"
+#      client-id: "notificafion-consumer"
+#      auto-offset-reset: earliest
+#      properties:
+#        spring.json.trusted.packages: "ru.andreybaryshnikov.notificationservice.model.*"
+#
+##logging:
+##  level:
+##    org:
+##      springframework:
+##        orm:
+##          jpa: INFO
+##          JpaTransactionManager: DEBUG
+##        transaction: INFO
+##        transaction.interceptor: TRACE
+##kafka:
+##  server: "http://my-prometheus-prometheus-pushgateway.monitoring.svc.cluster.local:9091"
+##  server: "http://kafka-controller-headless.auth:9092"
+##  server: "kafka.auth.svc.cluster.local:9092"
+#appl:
+#  #  groupid: "notificafion"
+#  topic: "NotificafionTopic"
