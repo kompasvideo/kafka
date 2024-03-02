@@ -32,6 +32,8 @@ import static org.springframework.kafka.support.serializer.JsonDeserializer.TYPE
 
 @Configuration
 public class ApplicationConfig {
+    @Value("${spring.kafka.consumer.bootstrap-servers}")
+    private String bootstrapServers;
     private static final Logger log = LoggerFactory.getLogger(ApplicationConfig.class);
     public final String topicName;
 
@@ -53,6 +55,7 @@ public class ApplicationConfig {
         props.put(TYPE_MAPPINGS, "ru.andreybaryshnikov.model.StringValue:ru.andreybaryshnikov.model.StringValue");
         props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 3);
         props.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, 3_000);
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
 
         var kafkaConsumerFactory = new DefaultKafkaConsumerFactory<String, StringValue>(props);
         kafkaConsumerFactory.setValueDeserializer(new JsonDeserializer<>(mapper));

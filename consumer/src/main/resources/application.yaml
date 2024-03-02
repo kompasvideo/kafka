@@ -9,7 +9,7 @@ spring:
   kafka:
     consumer:
       group-id: "test-group"
-      bootstrap-servers: "localhost:9092"
+      bootstrap-servers: "kafka.default.svc.cluster.local:9092"
       client-id: "demo-consumer"
       auto-offset-reset: earliest
 

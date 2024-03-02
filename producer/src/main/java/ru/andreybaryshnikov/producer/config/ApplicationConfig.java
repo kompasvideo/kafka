@@ -23,6 +23,8 @@ import ru.andreybaryshnikov.producer.service.kafka.StringValueSource;
 
 @Configuration
 public class ApplicationConfig {
+    @Value("${spring.kafka.producer.bootstrap-servers}")
+    private String bootstrapServers;
     private static final Logger log = LoggerFactory.getLogger(ApplicationConfig.class);
     public final String topicName;
 
@@ -41,7 +43,7 @@ public class ApplicationConfig {
         var props = kafkaProperties.buildProducerProperties();
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         var kafkaProducerFactory = new DefaultKafkaProducerFactory<String, StringValue>(props);
         kafkaProducerFactory.setValueSerializer(new JsonSerializer<>(mapper));
         return kafkaProducerFactory;

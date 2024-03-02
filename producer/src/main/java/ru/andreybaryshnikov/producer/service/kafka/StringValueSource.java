@@ -19,13 +19,22 @@ public class StringValueSource implements ValueSource {
 
     @Override
     public void generate() {
-        var executor = Executors.newScheduledThreadPool(1);
-        executor.scheduleAtFixedRate(() -> valueConsumer.send(makeValue()), 0, 1, TimeUnit.SECONDS);
-        log.info("generation started");
+        if (nextValue.get() < 30) {
+            var executor = Executors.newScheduledThreadPool(1);
+            executor.scheduleAtFixedRate(() -> valueConsumer.send(makeValue()), 0, 1, TimeUnit.SECONDS);
+            log.info("generation started");
+        }
+        else {
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                log.info("InterruptedException");
+            }
+        }
     }
 
     private StringValue makeValue() {
-        var id = nextValue.getAndAdd(3);
+        var id = nextValue.getAndAdd(4);
         return new StringValue(id, "stVal:" + id);
     }
 }
