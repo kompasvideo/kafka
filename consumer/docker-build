@@ -1,0 +1,13 @@
+minikube start
+minikube addons enable ingress
+minikube dashboard
+cd "C:\My\Обучение\Otus\MicrosArchit\proekt_job\Разное\Kafka\kafka\consumer"
+
+docker build -t consumer .
+docker tag consumer andrey1andrey/consumer
+docker push andrey1andrey/consumer
+
+helm install consumer chart/ --values chart/consumer-values.yaml
+helm delete consumer
+
+kubectl apply -f consumer-ingress.yaml

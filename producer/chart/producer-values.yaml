@@ -1,0 +1,15 @@
+deployment:
+  app:
+    name: producer-deployment
+    type: NodePort
+    image: andrey1andrey/producer
+    port: 9000
+    sport: "9000"
+    replicas: 1
+    uri: "producer-service"
+service:
+  app:
+    name: producer-service
+    type: NodePort
+    protocol: TCP
+    port: 9000

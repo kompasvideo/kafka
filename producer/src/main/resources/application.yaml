@@ -1,0 +1,11 @@
+server:
+  port: 9000
+application:
+  kafka:
+    topic: "demo-topic"
+
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: "kafka-controller-0.kafka-controller-headless.default.svc.cluster.local:9092"
+      client-id: "demo-producer"

@@ -1,0 +1,13 @@
+minikube start
+minikube addons enable ingress
+minikube dashboard
+cd "C:\My\Обучение\Otus\MicrosArchit\proekt_job\Разное\Kafka\kafka\producer"
+
+docker build -t producer .
+docker tag producer andrey1andrey/producer
+docker push andrey1andrey/producer
+
+helm install producer chart/ --values chart/producer-values.yaml
+helm delete producer
+
+kubectl apply -f producer-ingress.yaml

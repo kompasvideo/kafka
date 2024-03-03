@@ -1,0 +1,15 @@
+deployment:
+  app:
+    name: consumer-deployment
+    type: NodePort
+    image: andrey1andrey/consumer:latest
+    port: 9000
+    sport: "9000"
+    replicas: 1
+    uri: "consumer-service"
+service:
+  app:
+    name: consumer-service
+    type: NodePort
+    protocol: TCP
+    port: 9000
